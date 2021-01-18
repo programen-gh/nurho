@@ -1,0 +1,10 @@
+.error-message {
+  font-size: 1.3vw;
+  color: brown;
+}
+.login-flash-message {
+  font-size: 1.3vw;
+  color: brown;
+  display: flex;
+  justify-content: center;
+}
