@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
+  root to: 'services#index'
+  resources :companies, only: [:index]
 end

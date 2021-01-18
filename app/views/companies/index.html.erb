@@ -1,0 +1,45 @@
+<% if company_signed_in? %>
+  <p class="user-name">社名</p>
+  <%= link_to "マイページ", "#", class: "mypage" %>
+  <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: "logout" %>
+<% else %>
+  <header>
+    <div class="header-company-page">
+      <div class="header-left">
+        <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
+      </div>
+      <div class="header-middle">
+        <h1 class="header-text">掲載を希望される企業様</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <%= form_with class: "company-sign-in", local: true do |f| %>
+      <div class="form-group">
+        <div class="form-text-wrap">
+          <label class="form-text">メールアドレス</label>
+        </div>
+        <%= f.email_field :email, class: "input-default", id: "email", placeholder: "PC・携帯どちらでも可", autofocus: true %>
+        <p>※ 弊社より送られたメールに記載されたURLから入会手続きをお願いします</p>
+      </div>
+      <div class="company-btn">
+        <%= f.submit "送信" ,class:"company-btn-text" %>
+      </div>
+      <%= link_to "http://localhost:3000/companies/sign_up", url="http://localhost:3000/companies/sign_up", class: "company-sign-up" %>
+      <h1>既に登録がお済みの企業様はこちら</h1>
+      <div class="company-login">
+        <%= link_to "ログイン", new_company_session_path, class: "company-login-text" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<footer>
+  <div class="footer-left"></div>
+  <div class="footer-middle">
+    <p class="logo">© norho</p>
+  </div>
+  <div class="footer-right">
+  </div>
+</footer>

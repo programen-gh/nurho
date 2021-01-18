@@ -1,0 +1,34 @@
+.company-sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.company-btn {
+  width: 20%;
+  margin: 0 auto;
+}
+.company-btn-text {
+  width: 100%;
+  background: red;
+  border: 1px solid red;
+  color: white;
+  line-height: 48px;
+  font-size: 20px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+.company-sign-up {
+  margin: 50px;
+}
+.company-login {
+  margin-top: 60px;
+}
+.company-login-text {
+  text-decoration: none;
+  color:darkmagenta;
+  background-color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}

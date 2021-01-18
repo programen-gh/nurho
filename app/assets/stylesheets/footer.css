@@ -1,0 +1,25 @@
+footer {
+  height: 5vh;
+  background-color: mistyrose;
+  display: flex;
+  align-items: center;
+}
+
+.footer-left {
+  width: 20vw;
+}
+
+.footer-middle {
+  width: 60vw;
+}
+.logo {
+  text-align: center;
+}
+
+.footer-right {
+  width: 20vw;
+}
+.company-page {
+  font-size: 20px;
+  margin-left: 80px;
+}

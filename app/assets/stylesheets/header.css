@@ -1,0 +1,89 @@
+header {
+  height: 15vh;
+  background-color:mistyrose;
+}
+.header-top-page {
+  display: flex;
+  justify-content: space-between;
+}
+.header-company-page {
+  display: flex;
+}
+.header-sign-in-page {
+  display: flex;
+}
+
+.header-left {
+  height: 15vh;
+  width: 20vw;
+  display: flex;
+  align-items: center;
+}
+.nurho-icon {
+  width: 8vw;
+  height: 12vh;
+  margin-left: 2vw;
+}
+
+.header-top-page > .header-middle {
+  height: 15vh;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+}
+.header-sign-in-page > .header-middle {
+  height: 15vh;
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-company-page > .header-middle {
+  height: 15vh;
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.context {
+  margin: 10px auto;
+}
+.search-button {
+  font-size: 20px;
+  color: pink;
+  background-color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin: 0 auto;
+}
+
+.header-right {
+  height: 15vh;
+  width: 20vw;
+}
+.user-name {
+  font-size: 20px;
+  height: 10vh;
+  width: 20vw;
+  display: table-cell;
+  vertical-align: bottom;
+}
+.mypage {
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+.logout {
+  font-size: 20px;
+  text-decoration: none;
+}
+.login {
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+.sign-up {
+  font-size: 20px;
+  text-decoration: none;
+}

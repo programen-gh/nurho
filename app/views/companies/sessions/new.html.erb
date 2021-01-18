@@ -1,26 +1,42 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<header>
+  <div class="header-sign-in-page">
+    <div class="header-left">
+      <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="header-middle">
+      <h1 class="header-text">ログイン画面</h1>
+    </div>
   </div>
+</header>
+
+<%= form_with model: @company, url: company_session_path, class: "sign-in", local: true do |f| %>
+
+<div class="form-wrap">
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">メールアドレス</label>
+    </div>
+    <%= f.email_field :email, class: "input-default", id: "email", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">パスワード</label>
+    </div>
+    <%= f.password_field :password, class: "input-default", id: "password" %>
+  </div>
+  <div class="session-btn">
+    <%= f.submit "ログイン" ,class:"btn-text" %>
+  </div>
+</div>
+
 <% end %>
 
-<%= render "companies/shared/links" %>
+<footer>
+  <div class="footer-left"></div>
+  <div class="footer-middle">
+    <p class="logo">© norho</p>
+  </div>
+  <div class="footer-right">
+  </div>
+</footer>
+
