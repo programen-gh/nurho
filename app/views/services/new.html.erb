@@ -2,8 +2,10 @@
 
 <%= form_with(model: @service_to_medical_system, url: services_path, local: true) do |f| %>
   <div>
-    <%= f.label :image, "画像" %>
-    <%= f.file_field :image %>
+    <%= f.label :images, "画像" %>
+    <%= f.file_field :images, name: "service_to_medical_system[images][]", id: "image" %>
+    <div id="image-list">
+    </div>
   </div>
   <div>
     <%= f.label :name, "施設・サービス名" %>
