@@ -1,7 +1,22 @@
 <% if company_signed_in? %>
-  <p class="user-name">社名</p>
-  <%= link_to "マイページ", "#", class: "mypage" %>
-  <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: "logout" %>
+  <header>
+    <div class="header-company-page">
+      <div class="header-left">
+        <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
+      </div>
+      <div class="header-middle">
+        <h1 class="header-text">株式会社◯◯様</h1>
+        <%= link_to "新規掲載", new_service_path, class: "new-service" %>
+      </div>
+      <div class="header-right">
+        <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: "logout" %>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+  </div>
+
 <% else %>
   <header>
     <div class="header-company-page">

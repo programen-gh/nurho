@@ -5,4 +5,6 @@ class Company < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :name, presence: true, length: {maximum: 30}
+
+  has_many :services
 end
