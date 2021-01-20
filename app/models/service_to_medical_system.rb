@@ -10,20 +10,20 @@ class ServiceToMedicalSystem
   
   with_options presence: true do
     validates :company_id
-    validates :name
+    validates :name, length: { maximum: 30 }
     validates :address
     validates :establishment
-    validates :capacity
-    validates :rooms
-    validates :phone
-    validates :explanation
-    validates :category_id, numericality: { other_than: 1 }
-    validates :prefecture_id, numericality: { other_than: 1 }
-    validates :lump_sum_min
-    validates :lump_sum_max
-    validates :monthly_sum_min
-    validates :monthly_sum_max
-    validates :age_id, numericality: { other_than: 1 }
+    validates :capacity, numericality: { only_integer: true }
+    validates :rooms, numericality: { only_integer: true }
+    validates :phone, format: { with: /\A[0-9]{10,11}\z/, message: "を正しく入力してください"}
+    validates :explanation, length: { maximum: 200 }
+    validates :category_id, numericality: { other_than: 1, message: "を選択してください" }
+    validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
+    validates :lump_sum_min, numericality: { less_than_or_equal_to: :lump_sum_max, message: "を正しく入力してください" }
+    validates :lump_sum_max, numericality: { greater_than_or_equal_to: :lump_sum_min, message: "を正しく入力してください" }
+    validates :monthly_sum_min, numericality: { less_than_or_equal_to: :monthly_sum_max, message: "を正しく入力してください" }
+    validates :monthly_sum_max, numericality: { greater_than_or_equal_to: :monthly_sum_min, message: "を正しく入力してください" }
+    validates :age_id, numericality: { other_than: 1, message: "を選択してください" }
     validates :self_reliance
     validates :support_one
     validates :support_two
