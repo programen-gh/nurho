@@ -10,13 +10,13 @@ class ServiceToMedicalSystem
   
   with_options presence: true do
     validates :company_id
-    validates :name, length: { maximum: 30 }
+    validates :name, length: { maximum: 50, message: "は50文字以内で入力してください" }
     validates :address
     validates :establishment
     validates :capacity, numericality: { only_integer: true }
     validates :rooms, numericality: { only_integer: true }
     validates :phone, format: { with: /\A[0-9]{10,11}\z/, message: "を正しく入力してください"}
-    validates :explanation, length: { maximum: 200 }
+    validates :explanation, length: { maximum: 200, message: "は200文字以内で入力してください" }
     validates :category_id, numericality: { other_than: 1, message: "を選択してください" }
     validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
     validates :lump_sum_min, numericality: { less_than_or_equal_to: :lump_sum_max, message: "を正しく入力してください" }
