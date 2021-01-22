@@ -83,7 +83,7 @@
 ### Association
 
 - belongs_to :service
-- has_one :medical_systems
+- has_one :medical_system
 
 ## medical_systemsテーブル
 
