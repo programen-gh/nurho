@@ -11,6 +11,7 @@
 ### Association
 
 - has_many :favorites
+- has_many :services, through: :favorites
 
 ## companiesテーブル
 
@@ -53,6 +54,7 @@
 
 - belongs_to :company
 - has_many :favorites
+- has_many :users, through: :favorites
 - has_one :condition
 
 ## conditionsテーブル

@@ -1,0 +1,21 @@
+<h1>ユーザーのマイページ</h1>
+<ul>
+  <% @services.each do |service|%>
+  <li>
+    <%= service.name %>
+    <% service.images.each do |image| %>
+      <%= image_tag image.variant(resize: '100x100') %>
+    <% end %>
+    <%= service.condition.lump_sum_min %>
+    <%= service.condition.lump_sum_max %>
+    <%= service.condition.monthly_sum_min %>
+    <%= service.condition.monthly_sum_max %>
+    <%= service.address %>
+    <%= service.establishment %>
+    <%= service.capacity %>
+    <%= service.rooms %>
+    <%= service.phone %>
+    <%= service.explanation %>
+  </li>
+  <% end %>
+</ul>
