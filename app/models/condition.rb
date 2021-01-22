@@ -4,5 +4,5 @@ class Condition < ApplicationRecord
   belongs_to :prefecture
   belongs_to :age
   belongs_to :service
-  has_one :medical_system
+  has_one :medical_system, dependent: :destroy
 end
