@@ -5,7 +5,7 @@
         <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
       </div>
       <div class="header-middle">
-        <h1 class="header-text">株式会社◯◯様</h1>
+        <h1 class="header-text"><%= @company.name %> 様</h1>
         <%= link_to "新規掲載", new_service_path, class: "new-service" %>
       </div>
       <div class="header-right">
@@ -15,6 +15,26 @@
   </header>
 
   <div class="main">
+    <ul>
+      <% @services.each do |service|%>
+      <li>
+        <%= service.name %>
+        <% service.images.each do |image| %>
+          <%= image_tag image.variant(resize: '100x100') %>
+        <% end %>
+        <%= service.condition.lump_sum_min %>
+        <%= service.condition.lump_sum_max %>
+        <%= service.condition.monthly_sum_min %>
+        <%= service.condition.monthly_sum_max %>
+        <%= service.address %>
+        <%= service.establishment %>
+        <%= service.capacity %>
+        <%= service.rooms %>
+        <%= service.phone %>
+        <%= service.explanation %>
+      </li>
+      <% end %>
+    </ul>
   </div>
 
 <% else %>

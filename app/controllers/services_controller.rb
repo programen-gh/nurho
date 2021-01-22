@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   def index
-    @services = Service.all
+    @services = Service.includes(:company, :condition, :favorites).order("favorites.user_id DESC")
   end
 
   def new
