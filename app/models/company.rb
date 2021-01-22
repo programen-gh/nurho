@@ -6,5 +6,5 @@ class Company < ApplicationRecord
   
   validates :name, presence: true, length: {maximum: 30}
 
-  has_many :services
+  has_many :services, dependent: :destroy
 end
