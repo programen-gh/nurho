@@ -3,3 +3,39 @@
   background-color: lavenderblush;
   overflow: scroll;
 }
+.service-lists {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.service-list {
+  background-color: white;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+.service-name {
+  font-size: 25px;
+  text-decoration: none;
+}
+.service-list-middle {
+  display: flex;
+}
+.service-table {
+  margin: 10px;
+}
+.top-page-table {
+  width: 30vw;
+}
+.top-page-table-label {
+  height: 6vh;
+  width: 10vw;
+  text-align: center;
+}
+.top-page-table-data {
+  height: 6vh;
+  width: 20vw;
+  text-align: center;
+}
+.service-image {
+  margin: 10px;
+}

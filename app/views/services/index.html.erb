@@ -22,23 +22,90 @@
 </header>
 
 <div class= "main">
-  <ul>
+  <ul class="service-lists">
     <% @services.each do |service|%>
-    <li>
-      <%= service.name %>
-      <% service.images.each do |image| %>
-        <%= image_tag image.variant(resize: '100x100') %>
-      <% end %>
-      <%= service.condition.lump_sum_min %>
-      <%= service.condition.lump_sum_max %>
-      <%= service.condition.monthly_sum_min %>
-      <%= service.condition.monthly_sum_max %>
-      <%= service.address %>
-      <%= service.establishment %>
-      <%= service.capacity %>
-      <%= service.rooms %>
-      <%= service.phone %>
-      <%= service.explanation %>
+    <li class="service-list">
+      <div>
+        <%=link_to service.name, service_path(service.id), class: "service-name" %>
+      </div>
+      <div>
+        <%= service.explanation %>
+      </div>
+      <div class="service-list-middle">
+        <div class="service-table">
+          <table border="1" class="top-page-table">
+            <tr>
+              <td class="top-page-table-label">
+                入居金
+              </td>
+              <td class="top-page-table-data">
+                <% if service.condition.lump_sum_min == service.condition.lump_sum_max %>
+                  <%= service.condition.lump_sum_min %><span> 万円</span>
+                <% else %>
+                  <%= service.condition.lump_sum_min %>
+                  <span>~</span>
+                  <%= service.condition.lump_sum_max %><span> 万円</span>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="top-page-table-label">
+                月額
+              </td>
+              <td class="top-page-table-data">
+                <% if service.condition.monthly_sum_min == service.condition.monthly_sum_max %>
+                  <%= service.condition.monthly_sum_min %><span> 万円</span>
+                <% else %>
+                  <%= service.condition.monthly_sum_min %>
+                  <span>~</span>
+                  <%= service.condition.monthly_sum_max %><span> 万円</span>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="top-page-table-label">
+                住所
+              </td>
+              <td class="top-page-table-data">
+                <%= service.address %>
+              </td>
+            </tr>
+            <tr>
+              <td class="top-page-table-label">
+                開設年月日
+              </td>
+              <td class="top-page-table-data">
+                <%= service.establishment.year %><span> 年</span>
+                <%= service.establishment.month %><span> 月</span>
+                <%= service.establishment.day %><span> 日</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="top-page-table-label">
+                <p>定員 / 居室数</p>
+              </td>
+              <td class="top-page-table-data">
+                <%= service.capacity %><span> 名</span>
+                <span>/</span>
+                <%= service.rooms %><span> 室</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="top-page-table-label">
+                電話番号
+              </td>
+              <td class="top-page-table-data">
+                <%= service.phone %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="service-image">
+          <% service.images.each do |image| %>
+            <%= image_tag image.variant(resize: '300x500') %>
+          <% end %>
+        </div>
+      </div>
       <%= link_to "お気に入り", service_favorites_path(service.id), method: :post %>
       <%= link_to "お気に入り解除", service_favorite_path(:id, service.id), method: :delete %>
     </li>
