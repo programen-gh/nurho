@@ -224,7 +224,7 @@
     </div>
   </div>
   <div>
-    <%= f.label :guarantor, "保証人無し" %>
+    <%= f.label :guarantor, "保証人なし" %>
     <%= f.select :guarantor, [["○", 1],["要相談", 2],["×", 3]] %>
     <div class="error-message">
       <% if @service_to_medical_system.errors.include?(:guarantor) %>

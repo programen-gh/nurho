@@ -1,0 +1,586 @@
+<header>
+  <div class="header-top-page">
+    <div class="header-left">
+      <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
+    </div>
+    <div class="header-middle">
+      <h1 class="context">あなたにぴったりの施設・サービスが見つかる</h1>
+      <%= link_to "条件検索", "#", class: "search-button" %>
+    </div>
+    <div class="header-right">
+      <% if user_signed_in? %>
+        <p class="user-name">ユーザー名</p>
+        <%= link_to "マイページ", user_path(current_user.id), class: "mypage" %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout" %>
+      <% else %>
+        <p class="user-name">ゲスト さん</p>
+        <%= link_to "ログイン", new_user_session_path, class: "login" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "sign-up" %>
+      <% end %>
+    </div>
+  </div>
+</header>
+
+<div class= "main">
+  <div>
+    <div>
+      <%= @service.name %>
+      <span><<</span><%= @service.condition.category.name %><span>・</span><%= @service.condition.age.name %><span>>></span>
+    </div>
+    <div>
+      <%= @service.explanation %>
+    </div>
+    <div class="service-list-middle">
+      <div class="service-table">
+        <table border="1" class="top-page-table">
+          <tr>
+            <td class="top-page-table-label">
+              入居金
+            </td>
+            <td class="top-page-table-data">
+              <% if @service.condition.lump_sum_min == @service.condition.lump_sum_max %>
+                <%= @service.condition.lump_sum_min %><span> 万円</span>
+              <% else %>
+                <%= @service.condition.lump_sum_min %>
+                <span>~</span>
+                <%= @service.condition.lump_sum_max %><span> 万円</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="top-page-table-label">
+              月額
+            </td>
+            <td class="top-page-table-data">
+              <% if @service.condition.monthly_sum_min == @service.condition.monthly_sum_max %>
+                <%= @service.condition.monthly_sum_min %><span> 万円</span>
+              <% else %>
+                <%= @service.condition.monthly_sum_min %>
+                <span>~</span>
+                <%= @service.condition.monthly_sum_max %><span> 万円</span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="top-page-table-label">
+              住所
+            </td>
+            <td class="top-page-table-data">
+              <%= @service.address %>
+            </td>
+          </tr>
+          <tr>
+            <td class="top-page-table-label">
+              開設年月日
+            </td>
+            <td class="top-page-table-data">
+              <%= @service.establishment.year %><span> 年</span>
+              <%= @service.establishment.month %><span> 月</span>
+              <%= @service.establishment.day %><span> 日</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="top-page-table-label">
+              <p>定員 / 居室数</p>
+            </td>
+            <td class="top-page-table-data">
+              <%= @service.capacity %><span> 名</span>
+              <span>/</span>
+              <%= @service.rooms %><span> 室</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="top-page-table-label">
+              電話番号
+            </td>
+            <td class="top-page-table-data">
+              <%= @service.phone %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="service-image">
+        <% @service.images.each do |image| %>
+          <%= image_tag image.variant(resize: '300x500') %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <table border="1">
+        <caption>利用条件</caption>
+        <tr>
+          <td>自立</td>
+          <td>要支援1</td>
+          <td>要支援2</td>
+          <td>要介護1</td>
+          <td>要介護2</td>
+          <td>要介護3</td>
+          <td>要介護4</td>
+          <td>要介護5</td>
+          <td>保証人なし</td>
+          <td>生活保護受給者</td>
+        </tr>
+        <tr>
+          <td>
+          <%= case @service.condition.self_reliance
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.support_one
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.support_two
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.nursing_one
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.nursing_two
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.nursing_three
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.nursing_four
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.nursing_five
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.guarantor
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.welfare
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+        </tr>
+      </table>
+    <div>
+      <table border="1">
+        <caption>医療体制</caption>
+        <tr>
+          <td>認知症</td>
+          <td>看取り</td>
+          <td>介護食</td>
+          <td>流動食</td>
+          <td>リハビリ</td>
+          <td>糖尿病</td>
+          <td>胃ろう</td>
+          <td>経管栄養</td>
+          <td>ストーマ</td>
+          <td>在宅酸素療法</td>
+        </tr>
+        <tr>
+        <td>
+          <%= case @service.condition.dementia
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.take_care
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.care_food
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.liquid_food
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.rehabilitation
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.dm
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.gastrostomy
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.tube_feeding
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.stoma
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.home_oxygen_therapy
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+        </tr>
+        <tr>
+          <td>人工呼吸器</td>
+          <td>褥瘡</td>
+          <td>たん吸引</td>
+          <td>人工透析</td>
+          <td>気管切開</td>
+          <td>IVH</td>
+          <td>カテーテル</td>
+          <td>ペースメーカー</td>
+          <td>ALS</td>
+          <td>誤嚥性肺炎</td>
+        </tr>
+        <tr>
+        <td>
+          <%= case @service.condition.medical_system.ventilator
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.bedsore
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.sputum_suction
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.dialysis
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.tracheostomy
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.ivh
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.catheter
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.pacemaker
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.als
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.aspiration_pneumonia
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+        </tr>
+        <tr>
+          <td>喘息・気管支炎</td>
+          <td>パーキンソン病</td>
+          <td>廃用症候群</td>
+          <td>鬱病</td>
+          <td>統合失調症</td>
+          <td>リウマチ</td>
+          <td>骨粗鬆症</td>
+          <td>脳梗塞</td>
+          <td>心筋梗塞</td>
+          <td>末期癌</td>
+        </tr>
+        <tr>
+          <td>
+          <%= case @service.condition.medical_system.disuse_syndrome
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.clinical_depression
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.schizophrenia
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.rheumatism
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.osteoporosis
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.cerebral_infarction
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.myocardial_infarction
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.cancer
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.asthma
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+          <td>
+          <%= case @service.condition.medical_system.parkinson_disease
+          when 1
+            "○"
+          when 2
+            "要相談"
+          else
+            "×"
+          end  %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <%= link_to "お気に入り", service_favorites_path(@service.id), method: :post %>
+    <%= link_to "お気に入り解除", service_favorite_path(:id, @service.id), method: :delete %>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left"></div>
+  <div class="footer-middle">
+    <p class="logo">© norho</p>
+  </div>
+  <div class="footer-right">
+    <%= link_to "企業様向け", companies_path, class: "company-page"%>
+  </div>
+</footer>
