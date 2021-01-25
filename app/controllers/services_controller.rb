@@ -21,6 +21,12 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
   end
 
+  def destroy
+    @service = Service.find(params[:id])
+    @service.destroy
+    redirect_to controller: :companies, action: :index
+  end
+
   private
 
   def service_to_medical_system_params
