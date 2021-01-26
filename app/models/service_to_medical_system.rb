@@ -74,4 +74,9 @@ class ServiceToMedicalSystem
                           bedsore: bedsore, sputum_suction: sputum_suction, dialysis: dialysis, tracheostomy: tracheostomy, ivh: ivh, catheter: catheter, pacemaker: pacemaker, als: als, aspiration_pneumonia: aspiration_pneumonia, asthma: asthma,
                           parkinson_disease: parkinson_disease, disuse_syndrome: disuse_syndrome, clinical_depression: clinical_depression, schizophrenia: schizophrenia, rheumatism: rheumatism, osteoporosis: osteoporosis, cerebral_infarction: cerebral_infarction, myocardial_infarction: myocardial_infarction, cancer: cancer)
   end
+
+  def self.search
+    Service.joins(:condition).where(category_id: category_id, prefecture_id: prefecture_id, lump_sum_min: lump_sum_min, lump_sum_max: lump_sum_max, monthly_sum_min: monthly_sum_min, monthly_sum_max: monthly_sum_min, age_id: age_id, self_reliance: self_reliance, support_one: support_one,
+      support_two: support_two, nursing_one: nursing_one, nursing_two: nursing_two, nursing_three: nursing_three, nursing_four: nursing_four, nursing_five: nursing_five, dementia: dementia, guarantor: guarantor, welfare: welfare, take_care: take_care)
+  end
 end

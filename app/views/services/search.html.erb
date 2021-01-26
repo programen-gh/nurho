@@ -11,8 +11,8 @@
       <div id="mask", class="hidden"></div>
       <section id="modal", class="hidden">
         <%= form_with(url: search_services_path, method: :get, local: true) do |f| %>
-        <%= f.label :phone, "電話番号" %>
-        <%= f.text_field :phone %>
+        <%= f.label :prefecture_id, "都道府県" %>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}%>
         <%= f.submit "検索", id: "search", class: "search-button"%>
         <% end %>
       </section>
