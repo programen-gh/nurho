@@ -22,10 +22,10 @@
         <% service.images.each do |image| %>
           <%= image_tag image.variant(resize: '100x100') %>
         <% end %>
-        <%= service.condition.lump_sum_min %>
-        <%= service.condition.lump_sum_max %>
-        <%= service.condition.monthly_sum_min %>
-        <%= service.condition.monthly_sum_max %>
+        <%= service.lump_sum_min %>
+        <%= service.lump_sum_max %>
+        <%= service.monthly_sum_min %>
+        <%= service.monthly_sum_max %>
         <%= service.address %>
         <%= service.establishment %>
         <%= service.capacity %>

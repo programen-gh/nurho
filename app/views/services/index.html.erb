@@ -49,12 +49,12 @@
                 入居金
               </td>
               <td class="top-page-table-data">
-                <% if service.condition.lump_sum_min == service.condition.lump_sum_max %>
-                  <%= service.condition.lump_sum_min %><span> 万円</span>
+                <% if service.lump_sum_min == service.lump_sum_max %>
+                  <%= service.lump_sum_min %><span> 万円</span>
                 <% else %>
-                  <%= service.condition.lump_sum_min %>
+                  <%= service.lump_sum_min %>
                   <span>~</span>
-                  <%= service.condition.lump_sum_max %><span> 万円</span>
+                  <%= service.lump_sum_max %><span> 万円</span>
                 <% end %>
               </td>
             </tr>
@@ -63,12 +63,12 @@
                 月額
               </td>
               <td class="top-page-table-data">
-                <% if service.condition.monthly_sum_min == service.condition.monthly_sum_max %>
-                  <%= service.condition.monthly_sum_min %><span> 万円</span>
+                <% if service.monthly_sum_min == service.monthly_sum_max %>
+                  <%= service.monthly_sum_min %><span> 万円</span>
                 <% else %>
-                  <%= service.condition.monthly_sum_min %>
+                  <%= service.monthly_sum_min %>
                   <span>~</span>
-                  <%= service.condition.monthly_sum_max %><span> 万円</span>
+                  <%= service.monthly_sum_max %><span> 万円</span>
                 <% end %>
               </td>
             </tr>

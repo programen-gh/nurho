@@ -25,7 +25,7 @@
   <div>
     <div>
       <%= @service.name %>
-      <span><<</span><%= @service.condition.category.name %><span>・</span><%= @service.condition.age.name %><span>>></span>
+      <span><<</span><%= @service.category.name %><span>・</span><%= @service.age.name %><span>>></span>
     </div>
     <div>
       <%= @service.explanation %>
@@ -38,12 +38,12 @@
               入居金
             </td>
             <td class="top-page-table-data">
-              <% if @service.condition.lump_sum_min == @service.condition.lump_sum_max %>
-                <%= @service.condition.lump_sum_min %><span> 万円</span>
+              <% if @service.lump_sum_min == @service.lump_sum_max %>
+                <%= @service.lump_sum_min %><span> 万円</span>
               <% else %>
-                <%= @service.condition.lump_sum_min %>
+                <%= @service.lump_sum_min %>
                 <span>~</span>
-                <%= @service.condition.lump_sum_max %><span> 万円</span>
+                <%= @service.lump_sum_max %><span> 万円</span>
               <% end %>
             </td>
           </tr>
@@ -52,12 +52,12 @@
               月額
             </td>
             <td class="top-page-table-data">
-              <% if @service.condition.monthly_sum_min == @service.condition.monthly_sum_max %>
-                <%= @service.condition.monthly_sum_min %><span> 万円</span>
+              <% if @service.monthly_sum_min == @service.monthly_sum_max %>
+                <%= @service.monthly_sum_min %><span> 万円</span>
               <% else %>
-                <%= @service.condition.monthly_sum_min %>
+                <%= @service.monthly_sum_min %>
                 <span>~</span>
-                <%= @service.condition.monthly_sum_max %><span> 万円</span>
+                <%= @service.monthly_sum_max %><span> 万円</span>
               <% end %>
             </td>
           </tr>
@@ -122,7 +122,7 @@
         </tr>
         <tr>
           <td>
-          <%= case @service.condition.self_reliance
+          <%= case @service.self_reliance
           when 1
             "○"
           when 2
@@ -132,7 +132,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.support_one
+          <%= case @service.support_one
           when 1
             "○"
           when 2
@@ -142,7 +142,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.support_two
+          <%= case @service.support_two
           when 1
             "○"
           when 2
@@ -152,7 +152,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.nursing_one
+          <%= case @service.nursing_one
           when 1
             "○"
           when 2
@@ -162,7 +162,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.nursing_two
+          <%= case @service.nursing_two
           when 1
             "○"
           when 2
@@ -172,7 +172,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.nursing_three
+          <%= case @service.nursing_three
           when 1
             "○"
           when 2
@@ -182,7 +182,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.nursing_four
+          <%= case @service.nursing_four
           when 1
             "○"
           when 2
@@ -192,7 +192,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.nursing_five
+          <%= case @service.nursing_five
           when 1
             "○"
           when 2
@@ -202,7 +202,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.guarantor
+          <%= case @service.guarantor
           when 1
             "○"
           when 2
@@ -212,7 +212,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.welfare
+          <%= case @service.welfare
           when 1
             "○"
           when 2
@@ -240,7 +240,7 @@
         </tr>
         <tr>
         <td>
-          <%= case @service.condition.dementia
+          <%= case @service.dementia
           when 1
             "○"
           when 2
@@ -250,7 +250,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.take_care
+          <%= case @service.take_care
           when 1
             "○"
           when 2
@@ -260,7 +260,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.care_food
+          <%= case @service.care_food
           when 1
             "○"
           when 2
@@ -270,7 +270,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.liquid_food
+          <%= case @service.liquid_food
           when 1
             "○"
           when 2
@@ -280,7 +280,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.rehabilitation
+          <%= case @service.rehabilitation
           when 1
             "○"
           when 2
@@ -290,7 +290,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.dm
+          <%= case @service.dm
           when 1
             "○"
           when 2
@@ -300,7 +300,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.gastrostomy
+          <%= case @service.gastrostomy
           when 1
             "○"
           when 2
@@ -310,7 +310,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.tube_feeding
+          <%= case @service.tube_feeding
           when 1
             "○"
           when 2
@@ -320,7 +320,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.stoma
+          <%= case @service.stoma
           when 1
             "○"
           when 2
@@ -330,7 +330,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.home_oxygen_therapy
+          <%= case @service.home_oxygen_therapy
           when 1
             "○"
           when 2
@@ -354,7 +354,7 @@
         </tr>
         <tr>
         <td>
-          <%= case @service.condition.medical_system.ventilator
+          <%= case @service.ventilator
           when 1
             "○"
           when 2
@@ -364,7 +364,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.bedsore
+          <%= case @service.bedsore
           when 1
             "○"
           when 2
@@ -374,7 +374,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.sputum_suction
+          <%= case @service.sputum_suction
           when 1
             "○"
           when 2
@@ -384,7 +384,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.dialysis
+          <%= case @service.dialysis
           when 1
             "○"
           when 2
@@ -394,7 +394,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.tracheostomy
+          <%= case @service.tracheostomy
           when 1
             "○"
           when 2
@@ -404,7 +404,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.ivh
+          <%= case @service.ivh
           when 1
             "○"
           when 2
@@ -414,7 +414,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.catheter
+          <%= case @service.catheter
           when 1
             "○"
           when 2
@@ -424,7 +424,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.pacemaker
+          <%= case @service.pacemaker
           when 1
             "○"
           when 2
@@ -434,7 +434,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.als
+          <%= case @service.als
           when 1
             "○"
           when 2
@@ -444,7 +444,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.aspiration_pneumonia
+          <%= case @service.aspiration_pneumonia
           when 1
             "○"
           when 2
@@ -468,7 +468,7 @@
         </tr>
         <tr>
           <td>
-          <%= case @service.condition.medical_system.disuse_syndrome
+          <%= case @service.disuse_syndrome
           when 1
             "○"
           when 2
@@ -478,7 +478,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.clinical_depression
+          <%= case @service.clinical_depression
           when 1
             "○"
           when 2
@@ -488,7 +488,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.schizophrenia
+          <%= case @service.schizophrenia
           when 1
             "○"
           when 2
@@ -498,7 +498,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.rheumatism
+          <%= case @service.rheumatism
           when 1
             "○"
           when 2
@@ -508,7 +508,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.osteoporosis
+          <%= case @service.osteoporosis
           when 1
             "○"
           when 2
@@ -518,7 +518,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.cerebral_infarction
+          <%= case @service.cerebral_infarction
           when 1
             "○"
           when 2
@@ -528,7 +528,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.myocardial_infarction
+          <%= case @service.myocardial_infarction
           when 1
             "○"
           when 2
@@ -538,7 +538,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.cancer
+          <%= case @service.cancer
           when 1
             "○"
           when 2
@@ -548,7 +548,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.asthma
+          <%= case @service.asthma
           when 1
             "○"
           when 2
@@ -558,7 +558,7 @@
           end  %>
           </td>
           <td>
-          <%= case @service.condition.medical_system.parkinson_disease
+          <%= case @service.parkinson_disease
           when 1
             "○"
           when 2

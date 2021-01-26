@@ -13,6 +13,6 @@ class Prefecture < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :conditions
+  has_many :services
 
 end
