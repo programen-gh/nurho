@@ -9,7 +9,6 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
-    binding.pry
     if @service.valid?
       @service.save
       redirect_to controller: :companies, action: :index
@@ -29,7 +28,7 @@ class ServicesController < ApplicationController
   end
 
   def search
-    @services = Service.search(search_params)
+    @services = Service.search(params)
   end
 
   private

@@ -11,9 +11,102 @@
       <div id="mask", class="hidden"></div>
       <section id="modal", class="hidden">
         <%= form_with(url: search_services_path, method: :get, local: true) do |f| %>
-        <%= f.label :phone, "電話番号" %>
-        <%= f.text_field :phone %>
-        <%= f.submit "検索", id: "search", class: "search-button"%>
+        <div>
+          <%= f.label "入居費用" %>
+          <%= f.select :lump_sum, [["--","1"],["0","2"],["0~10万","3"],["10万~20万","4"],["20万~50万","5"],["50万~100万","6"],["100万~200万","7"],["200万~500万","8"],["500万~1000万","9"],["1000万~2000万","10"],["2000万~5000万","11"],["5000万以上","12"]] %>
+        </div>
+        <div>
+          <%= f.label "月額" %>
+          <%= f.select :monthly_sum, [["--","1"],["0","2"],["0~5万","3"],["5万~10万","4"],["10万~15万","5"],["15万~20万","6"],["20万~30万","7"],["30万~40万","8"],["40万~50万","9"],["50万~60万","10"],["60万~70万","11"],["70万~80万","12"],["80万~90万","13"],["90万~100万","14"],["100万以上","15"]] %>
+        </div>
+        <div>
+          <%= f.label :prefecture_id, "都道府県" %>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {} %>
+        </div>
+        <div>
+          <%= f.label :category_id, "施設の種類" %>
+          <%= f.collection_select :category_id, Category.all, :id, :name, {} %>
+        </div>
+        <div>
+          <%= f.label :age_id, "年齢制限" %>
+          <%= f.collection_select :age_id, Age.all, :id, :name, {} %>
+        </div>
+        <div>
+        <%= f.label "介護度" %>
+        <%= f.select :nursing_degree, [["--","1"],["自立","2"],["要支援1","3"],["要支援2","4"],["要介護1","5"],["要介護2","6"],["要介護3","7"],["要介護4","8"],["要介護5","9"]] %>
+        </div>
+        <div>
+        <%= f.label "保証人なし" %>
+        <%= f.check_box :guarantor ,{}, "true", "false" %>
+        </div>
+        <div>
+        <%= f.label "生活保護" %>
+        <%= f.check_box :welfare,{}, "true", "false" %>
+        </div>
+        <div>
+          <%= f.label "医療面" %>
+        </div>
+        <%= f.label "認知症" %>
+        <%= f.check_box :dementia, {}, "true", "false" %>
+        <%= f.label "看取り" %>
+        <%= f.check_box :take_care, {}, "true", "false" %>
+        <%= f.label "介護食" %>
+        <%= f.check_box :care_food, {}, "true", "false" %>
+        <%= f.label "流動食" %>
+        <%= f.check_box :liquid_food, {}, "true", "false" %>
+        <%= f.label "リハビリ" %>
+        <%= f.check_box :rehabilitation, {}, "true", "false" %>
+        <%= f.label "糖尿病" %>
+        <%= f.check_box :dm, {}, "true", "false" %>
+        <%= f.label "胃ろう" %>
+        <%= f.check_box :gastrostomy, {}, "true", "false" %>
+        <%= f.label "経管栄養" %>
+        <%= f.check_box :tube_feeding, {}, "true", "false" %>
+        <%= f.label "ストーマ" %>
+        <%= f.check_box :stoma, {}, "true", "false" %>
+        <%= f.label "在宅酸素療法" %>
+        <%= f.check_box :home_oxygen_therapy, {}, "true", "false" %>
+        <%= f.label "人工呼吸器" %>
+        <%= f.check_box :ventilator, {}, "true", "false" %>
+        <%= f.label "褥瘡" %>
+        <%= f.check_box :bedsore, {}, "true", "false" %>
+        <%= f.label "たん吸引" %>
+        <%= f.check_box :sputum_suction, {}, "true", "false" %>
+        <%= f.label "人工透析" %>
+        <%= f.check_box :dialysis, {}, "true", "false" %>
+        <%= f.label "IVH" %>
+        <%= f.check_box :ivh, {}, "true", "false" %>
+        <%= f.label "カテーテル" %>
+        <%= f.check_box :catheter, {}, "true", "false" %>
+        <%= f.label "ペースメーカー" %>
+        <%= f.check_box :pacemaker, {}, "true", "false" %>
+        <%= f.label "ALS" %>
+        <%= f.check_box :als, {}, "true", "false" %>
+        <%= f.label "誤嚥性肺炎" %>
+        <%= f.check_box :aspiration_pneumonia, {}, "true", "false" %>
+        <%= f.label "喘息・気管支炎" %>
+        <%= f.check_box :asthma, {}, "true", "false" %>
+        <%= f.label "パーキンソン病" %>
+        <%= f.check_box :parkinson_disease, {}, "true", "false" %>
+        <%= f.label "廃用症候群" %>
+        <%= f.check_box :disuse_syndrome, {}, "true", "false" %>
+        <%= f.label "鬱病" %>
+        <%= f.check_box :clinical_depression, {}, "true", "false" %>
+        <%= f.label "統合失調症" %>
+        <%= f.check_box :schizophrenia, {}, "true", "false" %>
+        <%= f.label "リウマチ" %>
+        <%= f.check_box :rheumatism, {}, "true", "false" %>
+        <%= f.label "骨粗鬆症" %>
+        <%= f.check_box :osteoporosis, {}, "true", "false" %>
+        <%= f.label "脳梗塞" %>
+        <%= f.check_box :cerebral_infarction, {}, "true", "false" %>
+        <%= f.label "心筋梗塞" %>
+        <%= f.check_box :myocardial_infarction, {}, "true", "false" %>
+        <%= f.label "末期癌" %>
+        <%= f.check_box :cancer, {}, "true", "false" %>
+        <div>
+          <%= f.submit "検索", id: "search", class: "search-button"%>
+        </div>
         <% end %>
       </section>
     </div>
