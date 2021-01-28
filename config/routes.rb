@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: 'services#index'
-  resources :services, only: [:new, :create, :show, :destroy] do
+  resources :services, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :favorites, only: [:create, :destroy]
     collection do
       get "search"
