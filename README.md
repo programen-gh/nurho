@@ -39,59 +39,35 @@
 
 ## servicesテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| company       | references | null: false, foreign_key: true |
-| name          | string     | null: false                    |
-| address       | string     | null: false                    |
-| establishment | date       | null: false                    |
-| capacity      | integer    | null: false                    |
-| rooms         | integer    | null: false                    |
-| phone         | string     | null: false                    |
-| explanation   | text       | null: false                    |
-
-### Association
-
-- belongs_to :company
-- has_many :favorites
-- has_many :users, through: :favorites
-- has_one :condition
-
-## conditionsテーブル
-
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| service         | references | null: false, foreign_key: true |
-| category_id     | integer    | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| lump_sum_min    | integer    | null: false                    |
-| lump_sum_max    | integer    | null: false                    |
-| monthly_sum_min | integer    | null: false                    |
-| monthly_sum_max | integer    | null: false                    |
-| age_id          | integer    | null: false                    |
-| self_reliance   | integer    | null: false                    |
-| support_one     | integer    | null: false                    |
-| support_two     | integer    | null: false                    |
-| nursing_one     | integer    | null: false                    |
-| nursing_two     | integer    | null: false                    |
-| nursing_three   | integer    | null: false                    |
-| nursing_four    | integer    | null: false                    |
-| nursing_five    | integer    | null: false                    |
-| dementia        | integer    | null: false                    |
-| guarantor       | integer    | null: false                    |
-| welfare         | integer    | null: false                    |
-| take_care       | integer    | null: false                    |
-
-### Association
-
-- belongs_to :service
-- has_one :medical_system
-
-## medical_systemsテーブル
-
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| condition             | references | null: false, foreign_key: true |
+| company               | references | null: false, foreign_key: true |
+| name                  | string     | null: false                    |
+| address               | string     | null: false                    |
+| establishment         | date       | null: false                    |
+| capacity              | integer    | null: false                    |
+| rooms                 | integer    | null: false                    |
+| phone                 | string     | null: false                    |
+| explanation           | text       | null: false                    |
+| category_id           | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
+| lump_sum_min          | integer    | null: false                    |
+| lump_sum_max          | integer    | null: false                    |
+| monthly_sum_min       | integer    | null: false                    |
+| monthly_sum_max       | integer    | null: false                    |
+| age_id                | integer    | null: false                    |
+| self_reliance         | integer    | null: false                    |
+| support_one           | integer    | null: false                    |
+| support_two           | integer    | null: false                    |
+| nursing_one           | integer    | null: false                    |
+| nursing_two           | integer    | null: false                    |
+| nursing_three         | integer    | null: false                    |
+| nursing_four          | integer    | null: false                    |
+| nursing_five          | integer    | null: false                    |
+| dementia              | integer    | null: false                    |
+| guarantor             | integer    | null: false                    |
+| welfare               | integer    | null: false                    |
+| take_care             | integer    | null: false                    |
 | care_food             | integer    | null: false                    |
 | liquid_food           | integer    | null: false                    |
 | rehabilitation        | integer    | null: false                    |
@@ -123,4 +99,10 @@
 
 ### Association
 
-- belongs_to :condition
+- belongs_to :company
+- has_many :favorites, dependent: :destroy
+- has_many :users, through: :favorites
+- has_many_attached :images, dependent: :destroy
+- belongs_to :category
+- belongs_to :prefecture
+- belongs_to :age
