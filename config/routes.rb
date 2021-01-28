@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   root to: 'services#index'
   resources :services, only: [:new, :create, :show, :destroy] do
     resources :favorites, only: [:create, :destroy]
+    collection do
+      get "search"
+    end
   end
   resources :users, only: [:show]
   resources :companies, only: [:index]

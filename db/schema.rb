@@ -46,8 +46,24 @@ ActiveRecord::Schema.define(version: 2021_01_22_052842) do
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
   end
 
-  create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "service_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_id"], name: "index_favorites_on_service_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.date "establishment", null: false
+    t.integer "capacity", null: false
+    t.integer "rooms", null: false
+    t.string "phone", null: false
+    t.text "explanation", null: false
     t.integer "category_id", null: false
     t.integer "prefecture_id", null: false
     t.integer "lump_sum_min", null: false
@@ -67,22 +83,6 @@ ActiveRecord::Schema.define(version: 2021_01_22_052842) do
     t.integer "guarantor", null: false
     t.integer "welfare", null: false
     t.integer "take_care", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["service_id"], name: "index_conditions_on_service_id"
-  end
-
-  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "service_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["service_id"], name: "index_favorites_on_service_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
-  create_table "medical_systems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "condition_id", null: false
     t.integer "care_food", null: false
     t.integer "liquid_food", null: false
     t.integer "rehabilitation", null: false
@@ -113,20 +113,6 @@ ActiveRecord::Schema.define(version: 2021_01_22_052842) do
     t.integer "cancer", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["condition_id"], name: "index_medical_systems_on_condition_id"
-  end
-
-  create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "company_id", null: false
-    t.string "name", null: false
-    t.string "address", null: false
-    t.date "establishment", null: false
-    t.integer "capacity", null: false
-    t.integer "rooms", null: false
-    t.string "phone", null: false
-    t.text "explanation", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_services_on_company_id"
   end
 
@@ -144,9 +130,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_052842) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "conditions", "services"
   add_foreign_key "favorites", "services"
   add_foreign_key "favorites", "users"
-  add_foreign_key "medical_systems", "conditions"
   add_foreign_key "services", "companies"
 end
