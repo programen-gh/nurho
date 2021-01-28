@@ -32,6 +32,7 @@
         <%= service.rooms %>
         <%= service.phone %>
         <%= service.explanation %>
+        <%= link_to "編集", edit_service_path(service.id) %>
         <%= link_to "掲載終了", service_path(service.id), method: :delete %>
       </li>
       <% end %>

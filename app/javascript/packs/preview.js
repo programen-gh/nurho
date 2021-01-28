@@ -1,4 +1,4 @@
-if(document.URL.match( /services[/]new/ ) || document.URL.match( /services[/]edit/ )){
+if(document.URL.match( /services[/]new/ ) || document.URL.match( /services[/]\d{1}[/]edit/ )){
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById("image-list");
   
