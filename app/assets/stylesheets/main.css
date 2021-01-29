@@ -24,18 +24,26 @@
   margin: 10px;
 }
 .top-page-table {
-  width: 30vw;
+  height: 350px;
+  width: 350px;
 }
 .top-page-table-label {
-  height: 6vh;
-  width: 10vw;
+  height: 50px;
+  width: 120px;
   text-align: center;
 }
 .top-page-table-data {
-  height: 6vh;
-  width: 20vw;
+  height: 50px;
+  width: 230px;
   text-align: center;
 }
-.service-image {
+.service-images {
   margin: 10px;
+}
+.service-images-top {
+  margin-bottom: 10px;
+}
+.service-images-bottom{
+  display: flex;
+  justify-content: space-between;
 }

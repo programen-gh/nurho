@@ -14,7 +14,7 @@ if(document.URL.match( /services[/]new/ ) || document.URL.match( /services[/]\d{
 
       const inputHTML = document.createElement("input")
       inputHTML.setAttribute("id", `image_${imageElementNum}`)
-      inputHTML.setAttribute("name", "service_to_medical_system[images][]")
+      inputHTML.setAttribute("name", "service[images][]")
       inputHTML.setAttribute("type", "file")
 
       imageElement.appendChild(blobImage)
