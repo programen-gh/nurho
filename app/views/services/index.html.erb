@@ -203,10 +203,19 @@
             </tr>
           </table>
         </div>
-        <div class="service-image">
-          <% service.images.each do |image| %>
-            <%= image_tag image.variant(resize: '300x500') %>
-          <% end %>
+        <div class="service-images">
+          <div class="service-images-top">
+            <%= image_tag service.images.first, class: "service-image-top" %>
+          </div>
+          <div class="service-images-bottom">
+            <% service.images.each_with_index do |image, i| %>
+              <% if i >= 1 && i <= 3 %>
+                <div>
+                  <%= image_tag image,  class: "service-image-bottom" %>
+                </div>
+              <% end %>
+            <% end %>
+          </div> 
         </div>
       </div>
       <%= link_to "お気に入り", service_favorites_path(service.id), method: :post %>
