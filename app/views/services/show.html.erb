@@ -1,33 +1,39 @@
 <header>
-  <div class="header-top-page">
+  <div class="header-details-page">
     <div class="header-left">
       <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
     </div>
     <div class="header-middle">
-      <h1 class="context">あなたにぴったりの施設・サービスが見つかる</h1>
-      <%= link_to "条件検索", "#", class: "search-button" %>
+      <div class="top"><%= @service.name %></div>
+      <div class="bottom">
+        <span><<</span><%= @service.category.name %><span>・</span><%= @service.age.name %><span>>></span>
+      </div>
     </div>
     <div class="header-right">
       <% if user_signed_in? %>
-        <p class="user-name">ユーザー名</p>
-        <%= link_to "マイページ", user_path(current_user.id), class: "mypage" %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout" %>
+        <div class="top" ><%= current_user.name %> さん</div>
+        <div class="bottom">
+          <%= link_to "マイページ", user_path(current_user.id), class: "mypage" %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout" %>
+        </div>
       <% else %>
-        <p class="user-name">ゲスト さん</p>
-        <%= link_to "ログイン", new_user_session_path, class: "login" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "sign-up" %>
+        <div class="top">ゲスト さん</div>
+        <div class="bottom">
+          <%= link_to "ログイン", new_user_session_path, class: "login" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "sign-up" %>
+        </div>
       <% end %>
     </div>
   </div>
 </header>
 
-<div class= "main">
-  <div>
-    <div>
-      <%= @service.name %>
-      <span><<</span><%= @service.category.name %><span>・</span><%= @service.age.name %><span>>></span>
-    </div>
-    <div>
+<div class="main">
+  <div class="fadeout-details-page">
+    <%= flash[:success] %>
+    <%= flash[:danger] %>
+  </div>
+  <div class="details">
+    <div class="explanation">施設からのコメント：
       <%= @service.explanation %>
     </div>
     <div class="service-list-middle">
@@ -99,13 +105,22 @@
           </tr>
         </table>
       </div>
-      <div class="service-image">
-        <% @service.images.each do |image| %>
-          <%= image_tag image.variant(resize: '300x500') %>
-        <% end %>
+      <div class="service-images">
+        <div class="service-images-top">
+          <%= image_tag @service.images.first, class: "service-image-top" %>
+        </div>
+        <div class="service-images-bottom">
+          <% @service.images.each_with_index do |image, i| %>
+            <% if i >= 1 && i <= 3 %>
+              <div>
+                <%= image_tag image,  class: "service-image-bottom" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div> 
       </div>
     </div>
-    <div>
+    <div class="condition">
       <table border="1">
         <caption>利用条件</caption>
         <tr>
@@ -223,7 +238,8 @@
           </td>
         </tr>
       </table>
-    <div>
+    </div>
+    <div class="medical-system">
       <table border="1">
         <caption>医療体制</caption>
         <tr>
@@ -570,15 +586,19 @@
         </tr>
       </table>
     </div>
-    <%= link_to "お気に入り", service_favorites_path(@service.id), method: :post %>
-    <%= link_to "お気に入り解除", service_favorite_path(:id, @service.id), method: :delete %>
+    <% if user_signed_in? %>
+      <div class="favorites">
+        <%= link_to image_tag("heart_02.png", class: "heart"), service_favorites_path(@service.id), method: :post %>
+        <%= link_to image_tag("heart_01.png", class: "heart"), service_favorite_path(@service.id), method: :delete %>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <footer>
   <div class="footer-left"></div>
   <div class="footer-middle">
-    <p class="logo">© norho</p>
+    <p class="logo">© nurho</p>
   </div>
   <div class="footer-right">
     <%= link_to "企業様向け", companies_path, class: "company-page"%>

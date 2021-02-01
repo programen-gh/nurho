@@ -6,7 +6,7 @@
 }
 .company-btn {
   width: 20%;
-  margin: 0 auto;
+  margin-bottom: 50px;
 }
 .company-btn-text {
   width: 100%;
@@ -19,7 +19,10 @@
   cursor: pointer;
 }
 .company-sign-up {
-  margin: 50px;
+  visibility: hidden;
+}
+.description {
+  margin-top: 50px;
 }
 .company-login {
   margin-top: 60px;
