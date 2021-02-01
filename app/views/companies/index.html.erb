@@ -5,35 +5,119 @@
         <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
       </div>
       <div class="header-middle">
-        <h1 class="header-text"><%= @company.name %> 様</h1>
-        <%= link_to "新規掲載", new_service_path, class: "new-service" %>
+        <div class="title"><%= @company.name %> の掲載ページ</div>
       </div>
       <div class="header-right">
-        <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: "logout" %>
+        <div class="new-service-block">
+          <%= link_to "新規掲載", new_service_path, class: "new-service" %>
+        </div>
+        <div class="logout-block">
+          <%= link_to "ログアウト", destroy_company_session_path, method: :delete, class: "logout" %>
+        </div>
       </div>
     </div>
   </header>
 
   <div class="main">
-    <ul>
+    <ul class="service-lists">
       <% @services.each do |service|%>
-      <li>
-        <%= service.name %>
-        <% service.images.each do |image| %>
-          <%= image_tag image.variant(resize: '100x100') %>
-        <% end %>
-        <%= service.lump_sum_min %>
-        <%= service.lump_sum_max %>
-        <%= service.monthly_sum_min %>
-        <%= service.monthly_sum_max %>
-        <%= service.address %>
-        <%= service.establishment %>
-        <%= service.capacity %>
-        <%= service.rooms %>
-        <%= service.phone %>
-        <%= service.explanation %>
-        <%= link_to "編集", edit_service_path(service.id) %>
-        <%= link_to "掲載終了", service_path(service.id), method: :delete %>
+      <li class="service-list">
+        <div class="service-list-top">
+          <div class="service-name">
+            <%= service.name %>
+          </div>
+        </div>
+        <div class="service-explanation">施設からのコメント：
+          <%= service.explanation %>
+        </div>
+        <div class="service-list-middle">
+          <div class="service-table">
+            <table border="1" class="top-page-table">
+              <tr>
+                <td class="top-page-table-label">
+                  入居金
+                </td>
+                <td class="top-page-table-data">
+                  <% if service.lump_sum_min == service.lump_sum_max %>
+                    <%= service.lump_sum_min %><span> 万円</span>
+                  <% else %>
+                    <%= service.lump_sum_min %>
+                    <span>~</span>
+                    <%= service.lump_sum_max %><span> 万円</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="top-page-table-label">
+                  月額
+                </td>
+                <td class="top-page-table-data">
+                  <% if service.monthly_sum_min == service.monthly_sum_max %>
+                    <%= service.monthly_sum_min %><span> 万円</span>
+                  <% else %>
+                    <%= service.monthly_sum_min %>
+                    <span>~</span>
+                    <%= service.monthly_sum_max %><span> 万円</span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="top-page-table-label">
+                  住所
+                </td>
+                <td class="top-page-table-data">
+                  <%= service.address %>
+                </td>
+              </tr>
+              <tr>
+                <td class="top-page-table-label">
+                  開設年月日
+                </td>
+                <td class="top-page-table-data">
+                  <%= service.establishment.year %><span> 年</span>
+                  <%= service.establishment.month %><span> 月</span>
+                  <%= service.establishment.day %><span> 日</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="top-page-table-label">
+                  <p>定員 / 居室数</p>
+                </td>
+                <td class="top-page-table-data">
+                  <%= service.capacity %><span> 名</span>
+                  <span>/</span>
+                  <%= service.rooms %><span> 室</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="top-page-table-label">
+                  電話番号
+                </td>
+                <td class="top-page-table-data">
+                  <%= service.phone %>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="service-images">
+            <div class="service-images-top">
+              <%= image_tag service.images.first, class: "service-image-top" %>
+            </div>
+            <div class="service-images-bottom">
+              <% service.images.each_with_index do |image, i| %>
+                <% if i >= 1 && i <= 3 %>
+                  <div>
+                    <%= image_tag image,  class: "service-image-bottom" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div> 
+          </div>
+        </div>
+        <div class="option">
+          <%= link_to "編集", edit_service_path(service.id), class: "edit-btn" %>
+          <%= link_to "掲載終了", service_path(service.id), class: "finish-btn", method: :delete %>
+        </div>
       </li>
       <% end %>
     </ul>
@@ -46,13 +130,15 @@
         <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
       </div>
       <div class="header-middle">
-        <h1 class="header-text">掲載を希望される企業様</h1>
+        <div class="title">掲載を希望される企業様</div>
+      </div>
+      <div class="header-right">
       </div>
     </div>
   </header>
 
   <div class="main">
-    <%= form_with class: "company-sign-in", local: true do |f| %>
+    <%= form_with class: "company-sign-in" do |f| %>
       <div class="form-group">
         <div class="form-text-wrap">
           <label class="form-text">メールアドレス</label>
@@ -61,10 +147,10 @@
         <p>※ 弊社より送られたメールに記載されたURLから入会手続きをお願いします</p>
       </div>
       <div class="company-btn">
-        <%= f.submit "送信" ,class:"company-btn-text" %>
+        <%= f.submit "送信" ,id: "btn", class:"company-btn-text" %>
       </div>
-      <%= link_to "http://localhost:3000/companies/sign_up", url="http://localhost:3000/companies/sign_up", class: "company-sign-up" %>
-      <h1>既に登録がお済みの企業様はこちら</h1>
+      <%= link_to "http://localhost:3000/companies/sign_up", url="http://localhost:3000/companies/sign_up", id: "url", class: "company-sign-up" %>
+      <h1 class="description">既に登録がお済みの企業様はこちら</h1>
       <div class="company-login">
         <%= link_to "ログイン", new_company_session_path, class: "company-login-text" %>
       </div>
@@ -75,7 +161,7 @@
 <footer>
   <div class="footer-left"></div>
   <div class="footer-middle">
-    <p class="logo">© norho</p>
+    <p class="logo">© nurho</p>
   </div>
   <div class="footer-right">
   </div>

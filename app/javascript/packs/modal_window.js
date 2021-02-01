@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener("DOMContentLoaded", function(){
   {
     const open = document.getElementById("open");
     const search = document.getElementById("search");

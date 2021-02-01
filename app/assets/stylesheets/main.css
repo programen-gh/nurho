@@ -3,6 +3,11 @@
   background-color: lavenderblush;
   overflow: scroll;
 }
+.heart {
+  height: 40px;
+  width: 40px;
+  margin: 10px 30px;
+}
 .service-lists {
   display: flex;
   align-items: center;
@@ -13,9 +18,18 @@
   list-style-type: none;
   margin-bottom: 20px;
 }
+.service-list-top {
+  text-align: center;
+  border-bottom: 2px solid gainsboro;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 .service-name {
-  font-size: 25px;
+  font-size: 28px;
   text-decoration: none;
+}
+.service-explanation {
+  margin: 0 10px;
 }
 .service-list-middle {
   display: flex;
@@ -46,4 +60,37 @@
 .service-images-bottom{
   display: flex;
   justify-content: space-between;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.details > .explanation {
+  width: 750px;
+  text-align: center;
+  margin-top: 10px;
+} 
+.details > .condition {
+  margin-top: 10px;
+}
+.details > .medical-system {
+  margin-top: 20px;
+}
+.favorites {
+  display: flex;
+}
+.option {
+  display: flex;
+  justify-content: center;
+}
+.edit-btn {
+  font-size: 20px;
+  text-decoration: none;
+  margin: 10px 20px;
+}
+.finish-btn {
+  font-size: 20px;
+  text-decoration: none;
+  margin: 10px 20px;
 }

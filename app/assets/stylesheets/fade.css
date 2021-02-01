@@ -1,0 +1,24 @@
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.fadeout-details-page {
+  font-size: 15px;
+  padding-top: 13px;
+  text-align: center;
+  animation-name: fadeOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+.fadeout-my-page {
+  font-size: 15px;
+  padding-top: 10px;
+  text-align: center;
+  animation-name: fadeOut;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}

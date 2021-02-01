@@ -6,8 +6,21 @@ header {
   display: flex;
   justify-content: space-between;
 }
+.header-my-page {
+  display: flex;
+  justify-content: space-between;
+}
+.header-details-page {
+  display: flex;
+  justify-content: space-between;
+}
 .header-company-page {
   display: flex;
+  justify-content: space-between;
+}
+.header-form-page {
+  display: flex;
+  justify-content: space-between;
 }
 .header-sign-in-page {
   display: flex;
@@ -31,6 +44,14 @@ header {
   display: flex;
   flex-direction: column;
 }
+.header-my-page > .header-middle {
+  height: 15vh;
+  width: 60vw;
+}
+.header-details-page > .header-middle {
+  height: 15vh;
+  width: 60vw;
+}
 .header-sign-in-page > .header-middle {
   height: 15vh;
   width: 60vw;
@@ -41,79 +62,99 @@ header {
 .header-company-page > .header-middle {
   height: 15vh;
   width: 60vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-.context {
-  margin: 10px auto;
+.header-form-page > .header-middle {
+  height: 15vh;
+  width: 60vw;
+}
+.header-top-page > .header-middle > .title {
+  font-size: 30px;
+  text-align: center;
+  margin: 2vh 0 1vh;
+}
+.header-details-page > .header-middle > .top {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 3vh;
+}
+.header-details-page > .header-middle > .bottom {
+  font-size: 20px;
+  text-align: center;
+}
+.header-my-page > .header-middle > .title {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-company-page > .header-middle > .title {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-form-page > .header-middle > .title {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-top-page > .header-right {
+  height: 15vh;
+  width: 20vw;
+}
+.header-details-page > .header-right {
+  height: 15vh;
+  width: 20vw;
+}
+.header-my-page > .header-right {
+  height: 15vh;
+  width: 20vw;
+}
+.header-company-page > .header-right {
+  height: 15vh;
+  width: 20vw;
+  display: flex;
+}
+.header-form-page > .header-right {
+  height: 15vh;
+  width: 20vw;
+}
+.header-top-page > .header-right > .top {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-top-page > .header-right > .bottom {
+  text-align: center;
+}
+.header-details-page > .header-right > .top {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-details-page > .header-right > .bottom {
+  text-align: center;
+}
+.header-my-page > .header-right > .logout-block{
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-company-page > .header-right > .new-service-block {
+  text-align: center;
+  margin-top: 5vh;
+}
+.header-company-page > .header-right > .logout-block {
+  text-align: center;
+  margin-top: 5vh;
 }
 .search-button {
   font-size: 20px;
   color: pink;
   background-color: white;
   text-decoration: none;
+  border: none;
   border-radius: 10px;
   padding: 5px 20px;
   margin: 0 auto;
   cursor: pointer;
-}
-#close {
-  cursor: pointer;
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: center;
-  padding: 12px;
-  margin: 16px auto 0;
-  background: #4caf50;
-  color: white;
-}
-#mask {
-  background: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
-}
-#mask.hidden {
-  display: none;
-}
-
-#modal {
-  background: #fff;
-  color: #555;
-  width: 50vw;
-  padding: 40px;
-  border-radius: 4px;
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  z-index: 2;
-  transition: 0.4s;
-}
-#modal.hidden {
-  transform: translate(0, -500px);
-}
-
-#modal p {
-  margin: 0 0 20px;
-}
-
-.header-right {
-  height: 15vh;
-  width: 20vw;
-}
-.user-name {
-  font-size: 20px;
-  height: 10vh;
-  width: 20vw;
-  display: table-cell;
-  vertical-align: bottom;
 }
 .mypage {
   font-size: 20px;
@@ -132,4 +173,9 @@ header {
 .sign-up {
   font-size: 20px;
   text-decoration: none;
+}
+.new-service {
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 20px;
 }

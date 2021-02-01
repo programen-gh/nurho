@@ -10,6 +10,7 @@ require("channels")
 require("./preview")
 require("./modal_window")
 require("./resize")
+require("./signup")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

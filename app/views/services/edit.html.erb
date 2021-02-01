@@ -1,539 +1,347 @@
-<h1>編集ページ</h1>
+<header>
+  <div class="header-form-page">
+    <div class="header-left">
+      <%= link_to image_tag("nurho_icon.png", class: "nurho-icon"), "/" %>
+    </div>
+    <div class="header-middle">
+      <div class="title">編集ページ</div>
+    </div>
+    <div class="header-right">
+    </div>
+  </div>
+</header>
 
-<%= form_with(model: @service, local: true) do |f| %>
-  <div>
-    <%= f.label :images, "画像" %>
-    <%= f.file_field :images, name: "service[images][]", id: "image" %>
-    <div id="image-list">
+<div class="main">
+  <%= form_with(model: @service, local: true) do |f| %>
+  <div class="form">
+    <div class="form-top">
+      <div>
+        <%= f.label :images, "画像" %>
+        <%= f.file_field :images, name: "service[images][]", id: "image" %>
+        <div id="image-list">
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :name, "施設・サービス名" %></div>
+        <div><%= f.text_field :name, placeholder: "（例）特別養護老人ホーム桜ヶ丘苑", class: "field"%></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:name) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:name).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :address, "住所" %></div>
+        <div><%= f.text_field :address, placeholder: "（例）東京都目黒区自由が丘一丁目1-2", class: "field"%></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:address) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:address).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :establishment, "開設年月日" %></div>
+        <div><%= f.date_select :establishment, {start_year: 1970, last_year: 2021, use_month_numbers: true} %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:establishment) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:establidhment).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :capacity, "定員" %></div>
+        <div><%= f.number_field :capacity, placeholder: 100 %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:capacity) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:capacity).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :rooms, "居室数" %></div>
+        <div><%= f.number_field :rooms, placeholder: 100 %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:rooms) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:rooms).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :phone, "電話番号" %> ※ハイフンなし</div>
+        <div><%= f.text_field :phone, placeholder: "0123456789" %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:phone) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:phone).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :explanation, "説明" %> ※200文字以内</div>
+        <div><%= f.text_area :explanation, placeholder: "閑静な住宅街に佇む綺麗な特別養護老人ホームです。医療体制も充実していて、24時間体制で看護師が常駐しています。ぜひ一度見学にお越しください。", class: "area"%></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:explanation) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:explanation).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :category_id, "施設の種類" %></div>
+        <div><%= f.collection_select :category_id, Category.all, :id, :name, {} %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:category_id) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:category_id).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :prefecture_id, "都道府県" %></div>
+        <div><%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {} %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:prefecture_id) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:prefecture_id).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label "入居費用" %>（万円）</div>
+        <div><%= f.number_field :lump_sum_min, placeholder: 500 %><span>~</span><%= f.number_field :lump_sum_max, placeholder: 1000 %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:lump_sum_min) || @service.errors.include?(:lump_sum_max) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:lump_sum_min).first %>
+            <%= @service.errors.full_messages_for(:lump_sum_max).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label "月額" %>（万円）</div>
+        <div><%= f.number_field :monthly_sum_min, placeholder: 20 %><span>~</span><%= f.number_field :monthly_sum_max, placeholder: 30%></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:monthly_sum_min) || @service.errors.include?(:monthly_sum_max) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:monthly_sum_min).first %>
+            <%= @service.errors.full_messages_for(:monthly_sum_max).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :age_id, "年齢制限" %></div>
+        <div><%= f.collection_select :age_id, Age.all, :id, :name, {} %></div>
+        <div class="error-message">
+          <% if @service.errors.include?(:age_id) %>
+            <span>※ </span>
+            <%= @service.errors.full_messages_for(:age_id).first %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <div><%= f.label :age_id, "保証人なし" %></div>
+        <div><%= f.select :guarantor, [["○", 1],["要相談", 2],["×", 3]] %></div>
+      </div>
+      <div>
+        <div><%= f.label :age_id, "生活保護受給者" %></div>
+        <div><%= f.select :welfare, [["○", 1],["要相談", 2],["×", 3]] %></div>
+      </div>
+    </div>
+    <div class="form-middle">
+      <table border="1">
+        <caption>介護度</caption>
+        <tr>
+          <td>自立</td>
+          <td>要支援1</td>
+          <td>要支援2</td>
+          <td>要介護1</td>
+          <td>要介護2</td>
+          <td>要介護3</td>
+          <td>要介護4</td>
+          <td>要介護5</td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.select :self_reliance, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :support_one, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :support_two, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :nursing_one, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :nursing_two, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :nursing_three, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :nursing_four, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :nursing_five, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="form-bottom">
+      <table border="1">
+        <caption>医療体制</caption>
+        <tr>
+          <td>認知症</td>
+          <td>看取り</td>
+          <td>介護食</td>
+          <td>流動食</td>
+          <td>リハビリ</td>
+          <td>糖尿病</td>
+          <td>胃ろう</td>
+          <td>経管栄養</td>
+          <td>ストーマ</td>
+          <td>在宅酸素療法</td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.select :dementia, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :take_care, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :care_food, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :liquid_food, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :rehabilitation, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :dm, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :gastrostomy, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :tube_feeding, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :stoma, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :home_oxygen_therapy, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+        </tr>
+        <tr>
+          <td>人工呼吸器</td>
+          <td>褥瘡</td>
+          <td>たん吸引</td>
+          <td>人工透析</td>
+          <td>気管切開</td>
+          <td>IVH</td>
+          <td>カテーテル</td>
+          <td>ペースメーカー</td>
+          <td>ALS</td>
+          <td>誤嚥性肺炎</td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.select :ventilator, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :bedsore, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :sputum_suction, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :dialysis, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :tracheostomy, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :ivh, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :catheter, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :pacemaker, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :als, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :aspiration_pneumonia, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+        </tr>
+        <tr>
+          <td>喘息・気管支炎</td>
+          <td>パーキンソン病</td>
+          <td>廃用症候群</td>
+          <td>鬱病</td>
+          <td>統合失調症</td>
+          <td>リウマチ</td>
+          <td>骨粗鬆症</td>
+          <td>脳梗塞</td>
+          <td>心筋梗塞</td>
+          <td>末期癌</td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.select :asthma, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :parkinson_disease, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :disuse_syndrome, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :clinical_depression, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :schizophrenia, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :rheumatism, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :osteoporosis, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :cerebral_infarction, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :myocardial_infarction, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+          <td>
+            <%= f.select :cancer, [["○", 1],["要相談", 2],["×", 3]] %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <%= f.submit "登録", class: "submit-btn" %>
     </div>
   </div>
-  <div>
-    <%= f.label :name, "施設・サービス名" %>
-    <%= f.text_field :name %>
-    <div class="error-message">
-      <% if @service.errors.include?(:name) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:name).first %>
-      <% end %>
-    </div>
+  <% end %>
+</div>
+
+<footer>
+  <div class="footer-left"></div>
+  <div class="footer-middle">
+    <p class="logo">© nurho</p>
   </div>
-  <div>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
-    <div class="error-message">
-      <% if @service.errors.include?(:address) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:address).first %>
-      <% end %>
-    </div>
+  <div class="footer-right">
   </div>
-  <div>
-    <%= f.label :establishment, "開設年月日" %>
-    <%= f.date_select :establishment, {start_year: 1970, last_year: 2021, use_month_numbers: true} %>
-    <div class="error-message">
-      <% if @service.errors.include?(:establishment) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:establidhment).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :capacity, "定員" %>
-    <%= f.number_field :capacity %>
-    <div class="error-message">
-      <% if @service.errors.include?(:capacity) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:capacity).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :rooms, "居室数" %>
-    <%= f.number_field :rooms %>
-    <div class="error-message">
-      <% if @service.errors.include?(:rooms) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:rooms).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :phone, "電話番号" %>
-    <%= f.text_field :phone %>
-    <div class="error-message">
-      <% if @service.errors.include?(:phone) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:phone).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :explanation, "説明" %>
-    <%= f.text_area :explanation %>
-    <div class="error-message">
-      <% if @service.errors.include?(:explanation) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:explanation).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :category_id, "施設の種類" %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, {} %>
-    <div class="error-message">
-      <% if @service.errors.include?(:category_id) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:category_id).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :prefecture_id, "都道府県" %>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {} %>
-    <div class="error-message">
-      <% if @service.errors.include?(:prefecture_id) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:prefecture_id).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label "入居費用" %>
-    <%= f.number_field :lump_sum_min %>
-    <span>~</span>
-    <%= f.number_field :lump_sum_max %>
-    <div class="error-message">
-      <% if @service.errors.include?(:lump_sum_min) || @service.errors.include?(:lump_sum_max) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:lump_sum_min).first %>
-        <%= @service.errors.full_messages_for(:lump_sum_max).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label "月額" %>
-    <%= f.number_field :monthly_sum_min %>
-    <span>~</span>
-    <%= f.number_field :monthly_sum_max %>
-    <div class="error-message">
-      <% if @service.errors.include?(:monthly_sum_min) || @service.errors.include?(:monthly_sum_max) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:monthly_sum_min).first %>
-        <%= @service.errors.full_messages_for(:monthly_sum_max).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :age_id, "年齢制限" %>
-    <%= f.collection_select :age_id, Age.all, :id, :name, {} %>
-    <div class="error-message">
-      <% if @service.errors.include?(:age_id) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:age_id).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :self_reliance, "自立" %>
-    <%= f.select :self_reliance, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:self_reliance) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:self_reliance).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :support_one, "要支援1" %>
-    <%= f.select :support_one, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:support_one) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:support_one).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :support_two, "要支援2" %>
-    <%= f.select :support_two, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:support_two) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:support_two).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :nursing_one, "要介護1" %>
-    <%= f.select :nursing_one, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:nursing_one) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:nursing_one).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :nursing_two, "要介護2" %>
-    <%= f.select :nursing_two, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:nursing_two) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:nursing_two).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :nursing_three, "要介護3" %>
-    <%= f.select :nursing_three, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:nursing_three) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:nursing_three).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :nursing_four, "要介護4" %>
-    <%= f.select :nursing_four, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:nursing_four) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:nursing_four).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :nursing_five, "要介護5" %>
-    <%= f.select :nursing_five, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:nursing_five) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:nursing_five).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :dementia, "認知症" %>
-    <%= f.select :dementia, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:dementia) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:dementia).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :guarantor, "保証人なし" %>
-    <%= f.select :guarantor, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:guarantor) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:guarantor).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :welfare, "生活保護受給者" %>
-    <%= f.select :welfare, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:welfare) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:welfare).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :take_care, "看取り" %>
-    <%= f.select :take_care, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:take_care) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:take_care).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :care_food, "介護食" %>
-    <%= f.select :care_food, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:care_food) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:care_food).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :liquid_food, "流動食" %>
-    <%= f.select :liquid_food, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:liquid_food) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:liquid_food).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :rehabilitation, "リハビリ" %>
-    <%= f.select :rehabilitation, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:rehabilitation) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:rehabilitation).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :dm, "糖尿病" %>
-    <%= f.select :dm, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:dm) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:dm).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :gastrostomy, "胃ろう" %>
-    <%= f.select :gastrostomy, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:gastrostomy) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:gastrostomy).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :tube_feeding, "経管栄養" %>
-    <%= f.select :tube_feeding, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:tube_feeding) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:tube_feeding).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :stoma, "ストーマ" %>
-    <%= f.select :stoma, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:stoma) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:stoma).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :home_oxygen_therapy, "在宅酸素療法" %>
-    <%= f.select :home_oxygen_therapy, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:home_oxygen_therapy) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:home_oxygen_therapy).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :ventilator, "人工呼吸器" %>
-    <%= f.select :ventilator, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:ventilator) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:ventilator).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :bedsore, "褥瘡" %>
-    <%= f.select :bedsore, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:bedsore) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:bedsore).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :sputum_suction, "たん吸引" %>
-    <%= f.select :sputum_suction, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:sputum_suction) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:sputum_suction).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :dialysis, "人工透析" %>
-    <%= f.select :dialysis, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:dialysis) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:dialysis).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :tracheostomy, "気管切開" %>
-    <%= f.select :tracheostomy, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:tracheostomy) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:tracheostomy).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :ivh, "IVH" %>
-    <%= f.select :ivh, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:ivh) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:ivh).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :catheter, "カテーテル" %>
-    <%= f.select :catheter, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:catheter) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:catheter).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :pacemaker, "ペースメーカー" %>
-    <%= f.select :pacemaker, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:pacemaker) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:pacemaker).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :als, "ALS" %>
-    <%= f.select :als, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:als) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:als).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :aspiration_pneumonia, "誤嚥性肺炎" %>
-    <%= f.select :aspiration_pneumonia, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:aspiration_pneumonia) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:aspiration_pneumonia).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :asthma, "喘息・気管支炎" %>
-    <%= f.select :asthma, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:asthma) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:asthma).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :parkinson_disease, "パーキンソン病" %>
-    <%= f.select :parkinson_disease, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:parkinson_disease) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:parkinson_disease).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :disuse_syndrome, "廃用症候群" %>
-    <%= f.select :disuse_syndrome, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:disuse_syndrome) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:disuse_syndrome).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :clinical_depression, "鬱病" %>
-    <%= f.select :clinical_depression, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:clinical_depression) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:clinical_depression).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :schizophrenia, "統合失調症" %>
-    <%= f.select :schizophrenia, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:schizophrenia) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:schizophrenia).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :rheumatism, "リウマチ" %>
-    <%= f.select :rheumatism, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:rheumatism) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:rheumatism).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :osteoporosis, "骨粗鬆症" %>
-    <%= f.select :osteoporosis, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:osteoporosis) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:osteoporosis).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :cerebral_infarction, "脳梗塞" %>
-    <%= f.select :cerebral_infarction, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:cerebral_infarction) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:cerebral_infarction).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :myocardial_infarction, "心筋梗塞" %>
-    <%= f.select :myocardial_infarction, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:myocardial_infarction) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:myocardial_infarction).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.label :cancer, "末期癌" %>
-    <%= f.select :cancer, [["○", 1],["要相談", 2],["×", 3]] %>
-    <div class="error-message">
-      <% if @service.errors.include?(:cancer) %>
-        <span>※ </span>
-        <%= @service.errors.full_messages_for(:cancer).first %>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
+</footer>
