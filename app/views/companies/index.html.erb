@@ -149,7 +149,7 @@
       <div class="company-btn">
         <%= f.submit "送信" ,id: "btn", class:"company-btn-text" %>
       </div>
-      <%= link_to "http://localhost:3000/companies/sign_up", url="http://localhost:3000/companies/sign_up", id: "url", class: "company-sign-up" %>
+      <%= link_to "新規登録", new_company_registration_path, id: "url", class: "company-sign-up" %>
       <h1 class="description">既に登録がお済みの企業様はこちら</h1>
       <div class="company-login">
         <%= link_to "ログイン", new_company_session_path, class: "company-login-text" %>
