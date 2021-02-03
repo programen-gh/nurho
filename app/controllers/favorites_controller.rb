@@ -3,13 +3,13 @@ class FavoritesController < ApplicationController
     @service = Service.find(params[:service_id])
     @service.favorites.each do |favorite|
       if favorite.user_id == current_user.id
-        flash[:danger] = "お気に入り中です"
+        flash[:danger] = "マイページに追加済みです"
         redirect_to service_path(@service.id) and return
       end
     end
     @favorite = Favorite.new(favorite_params)
     @favorite.save
-    flash[:success] = "お気に入りに追加しました"
+    flash[:success] = "マイページに追加しました"
     redirect_to service_path(@service.id) and return
   end
 
@@ -19,7 +19,7 @@ class FavoritesController < ApplicationController
     @user.favorites.each do |favorite|
       if favorite.service_id == @service.id
         if favorite.delete
-          flash[:success] = "お気に入りから削除しました"
+          flash[:success] = "マイページから削除されました"
           redirect_to controller: :users, action: :show and return
         else
           flash.now[:danger] = "失敗しました"

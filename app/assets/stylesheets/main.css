@@ -6,7 +6,7 @@
 .heart {
   height: 40px;
   width: 40px;
-  margin: 10px 30px;
+  margin: 10px 60px;
 }
 .service-lists {
   display: flex;
@@ -80,6 +80,13 @@
 }
 .favorites {
   display: flex;
+}
+.favorites-texts {
+  display: flex;
+  margin-bottom: 10px;
+}
+.favorites-text {
+  margin: 0 25px;
 }
 .option {
   display: flex;
