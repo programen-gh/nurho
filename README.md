@@ -35,7 +35,7 @@ basic認証
 # DEMO
 **トップページ**
 
-![nurho_toppage](https://user-images.githubusercontent.com/75558619/106731153-80409680-6652-11eb-886a-2cf4d5915c24.jpeg)
+![nurho_toppage](https://user-images.githubusercontent.com/75558619/106731999-81be8e80-6653-11eb-882d-ee5cd85c7d1c.jpeg)
 
 - 全国の介護サービスが一覧表示されている
 - 介護サービス名をクリックすると詳細ページに遷移する
@@ -45,29 +45,29 @@ basic認証
 - 画面下部企業用の管理ボタンをクリックすると企業用の管理ページに遷移する
 
 **検索画面**
-![](https://i.gyazo.com/3deebcb9b3cc54b01f0edfbe4b2bd4cb.jpg)
+![nurho_search](https://user-images.githubusercontent.com/75558619/106733821-ae73a580-6655-11eb-9134-6b7a54a8562e.jpeg)
 
 - 条件を入力すると一致する介護サービスが一覧表示される
 
 **詳細ページ**
-![](https://i.gyazo.com/324b264a0b59fc091343a4bd3cd78f02.jpg)
+![nurho_details](https://user-images.githubusercontent.com/75558619/106734133-06121100-6656-11eb-9128-5fb0841d18ac.jpeg)
 
 - ハート型のアイコンをクリックするとユーザーのマイページに登録・解除される(ログインしないと表示されない)
 
 **ユーザー用・企業用の新規登録・ログイン画面**
-![](https://i.gyazo.com/7d46ab439eafa3f571313683b5ba02ad.png)
+<img width="1380" alt="nurho_signup" src="https://user-images.githubusercontent.com/75558619/106734590-8afd2a80-6656-11eb-9b6e-0964fcbd41e3.png">
 
 - 正しく入力が行われると新規登録・ログインが完了する
 - 間違った入力が行われるとエラーメッセージが表示される
 
 **企業用の管理ページ(未ログイン時)**
-![](https://i.gyazo.com/fe97704b6c24cd3112cdd180f0da2f5a.png)
+<img width="1372" alt="nurho_company_not_signed_in" src="https://user-images.githubusercontent.com/75558619/106734700-a831f900-6656-11eb-9390-6fe4a3cd6d0e.png">
 
 - 新規企業はEメールを送信すると画面中央に新規登録ボタンが表示され、クリックすると新規登録画面に遷移する
 - ログインボタンからログイン画面に遷移する
 
 **企業用の管理ページ(ログイン時)**
-![](https://i.gyazo.com/9cad8e290d517f4e53eb34c76b2860c3.jpg)
+![nurho_company_signed_in](https://user-images.githubusercontent.com/75558619/106734883-e5968680-6656-11eb-8fc6-bb35fceadcec.jpeg)
 
 - 自社が掲載した介護サービスが一覧表示される
 - 新規掲載ボタンをクリックすると新規掲載ページに遷移する
@@ -76,11 +76,13 @@ basic認証
 - 掲載終了ボタンをクリックすると削除される
 
 **新規掲載・編集ページ**
+<img width="1373" alt="nurho_post" src="https://user-images.githubusercontent.com/75558619/106735039-124a9e00-6657-11eb-9789-c78cf29e28ec.png">
 
 - 正しく入力が行われると新規掲載・編集が完了する
 - 間違った入力が行われるとエラーメッセージが表示される
 
 **ユーザーのマイページ**
+![nurho_mypage](https://user-images.githubusercontent.com/75558619/106735127-2f7f6c80-6657-11eb-9049-1ed6a8c2850f.jpg)
 
 - お気に入り登録した介護サービスが一覧表示される
 
