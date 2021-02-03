@@ -74,9 +74,11 @@
 } 
 .details > .condition {
   margin-top: 10px;
+  text-align: center;
 }
 .details > .medical-system {
   margin-top: 20px;
+  text-align: center;
 }
 .favorites {
   display: flex;
