@@ -69,7 +69,7 @@
 }
 .details > .explanation {
   width: 750px;
-  text-align: center;
+  text-align: left;
   margin-top: 10px;
 } 
 .details > .condition {
