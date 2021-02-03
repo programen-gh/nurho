@@ -8,19 +8,18 @@ ja:
        email: メールアドレス
        password: パスワード
        password_confirmation: パスワード（確認用）
- activemodel:
-    attributes:
-      service:
-        name: 施設・サービス名
-        address: 住所
-        capacity: 定員
-        rooms: 居室数
-        phone: 電話番号
-        explanation: 説明
-        category_id: 施設の種類
-        prefecture_id: 都道府県
-        lump_sum_min: 入居費用の最低額
-        lump_sum_max: 入居費用の最高額
-        monthly_sum_min: 月額の最低額
-        monthly_sum_max: 月額の最高額
-        age_id: 年齢制限
+     service:
+       name: 施設・サービス名
+       address: 住所
+       capacity: 定員
+       rooms: 居室数
+       phone: 電話番号
+       explanation: 説明
+       category_id: 施設の種類
+       prefecture_id: 都道府県
+       lump_sum_min: 入居費用の最低額
+       lump_sum_max: 入居費用の最高額
+       monthly_sum_min: 月額の最低額
+       monthly_sum_max: 月額の最高額
+       age_id: 年齢制限
+      

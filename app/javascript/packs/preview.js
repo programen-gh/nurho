@@ -1,39 +1,37 @@
-if(document.URL.match( /services[/]new/ ) || document.URL.match( /services[/]\d{1}[/]edit/ )){
-  document.addEventListener('DOMContentLoaded', function(){
-    const ImageList = document.getElementById("image-list");
-  
-    const createImageHTML = (blob) => {
-      const imageElement = document.createElement("div")
-      imageElement.setAttribute("class", "image-element")
-      let imageElementNum = document.querySelectorAll(".image-element").length
+document.addEventListener('DOMContentLoaded', function(){
+  const ImageList = document.getElementById("image-list");
 
-      const blobImage = document.createElement("img")
-      blobImage.height = 250
-      blobImage.width = 250
-      blobImage.setAttribute("src", blob)
+  const createImageHTML = (blob) => {
+    const imageElement = document.createElement("div")
+    imageElement.setAttribute("class", "image-element")
+    let imageElementNum = document.querySelectorAll(".image-element").length
 
-      const inputHTML = document.createElement("input")
-      inputHTML.setAttribute("id", `image_${imageElementNum}`)
-      inputHTML.setAttribute("name", "service[images][]")
-      inputHTML.setAttribute("type", "file")
+    const blobImage = document.createElement("img")
+    blobImage.height = 250
+    blobImage.width = 250
+    blobImage.setAttribute("src", blob)
 
-      imageElement.appendChild(blobImage)
-      imageElement.appendChild(inputHTML)
-      ImageList.appendChild(imageElement)
+    const inputHTML = document.createElement("input")
+    inputHTML.setAttribute("id", `image_${imageElementNum}`)
+    inputHTML.setAttribute("name", "service[images][]")
+    inputHTML.setAttribute("type", "file")
 
-      inputHTML.addEventListener("change", (e) => {
-        file = e.target.files[0];
-        blob = window.URL.createObjectURL(file);
+    imageElement.appendChild(blobImage)
+    imageElement.appendChild(inputHTML)
+    ImageList.appendChild(imageElement)
 
-        createImageHTML(blob)
-      })
-    }
-
-    document.getElementById("image").addEventListener("change", function(e){
-      let file = e.target.files[0];
-      let blob = window.URL.createObjectURL(file);
+    inputHTML.addEventListener("change", (e) => {
+      file = e.target.files[0];
+      blob = window.URL.createObjectURL(file);
 
       createImageHTML(blob)
-    });
+    })
+  }
+
+  document.getElementById("image").addEventListener("change", function(e){
+    let file = e.target.files[0];
+    let blob = window.URL.createObjectURL(file);
+
+    createImageHTML(blob)
   });
-}
+});
