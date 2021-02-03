@@ -113,7 +113,7 @@
       </div>
       <div>
         <div><%= f.label "入居費用" %>（万円）</div>
-        <div><%= f.number_field :lump_sum_min, placeholder: 500 %><span>~</span><%= f.number_field :lump_sum_max, placeholder: 1000 %></div>
+        <div><%= f.number_field :lump_sum_min, step: "0.1", placeholder: 500 %><span>~</span><%= f.number_field :lump_sum_max, step: "0.1", placeholder: 1000 %></div>
         <div class="error-message">
           <% if @service.errors.include?(:lump_sum_min) || @service.errors.include?(:lump_sum_max) %>
             <span>※ </span>
@@ -124,7 +124,7 @@
       </div>
       <div>
         <div><%= f.label "月額" %>（万円）</div>
-        <div><%= f.number_field :monthly_sum_min, placeholder: 20 %><span>~</span><%= f.number_field :monthly_sum_max, placeholder: 30%></div>
+        <div><%= f.number_field :monthly_sum_min, step: "0.1", placeholder: 20 %><span>~</span><%= f.number_field :monthly_sum_max, step: "0.1", placeholder: 30%></div>
         <div class="error-message">
           <% if @service.errors.include?(:monthly_sum_min) || @service.errors.include?(:monthly_sum_max) %>
             <span>※ </span>

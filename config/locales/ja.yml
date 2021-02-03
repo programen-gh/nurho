@@ -10,7 +10,7 @@ ja:
        password_confirmation: パスワード（確認用）
  activemodel:
     attributes:
-      service_to_medical_system:
+      service:
         name: 施設・サービス名
         address: 住所
         capacity: 定員
