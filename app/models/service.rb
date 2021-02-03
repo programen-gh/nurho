@@ -57,6 +57,7 @@ class Service < ApplicationRecord
     validates :cerebral_infarction
     validates :myocardial_infarction
     validates :cancer
+    validates :images
   end
 
   belongs_to :company

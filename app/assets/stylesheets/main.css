@@ -14,6 +14,7 @@
   flex-direction: column;
 }
 .service-list {
+  width: 800px;
   background-color: white;
   list-style-type: none;
   margin-bottom: 20px;
@@ -29,13 +30,13 @@
   text-decoration: none;
 }
 .service-explanation {
-  margin: 0 10px;
+  margin: 0 20px;
 }
 .service-list-middle {
   display: flex;
 }
 .service-table {
-  margin: 10px;
+  margin: 20px;
 }
 .top-page-table {
   height: 350px;
@@ -52,7 +53,7 @@
   text-align: center;
 }
 .service-images {
-  margin: 10px;
+  margin: 20px;
 }
 .service-images-top {
   margin-bottom: 10px;
