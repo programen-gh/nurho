@@ -34,7 +34,8 @@ basic認証
 上記全ての問題を解決できるような簡潔でわかりやすい検索サイトを実現したかった。
 # DEMO
 **トップページ**
-![](app/assets/images/nurho_toppage.jpg)
+
+![nurho_toppage](https://user-images.githubusercontent.com/75558619/106731153-80409680-6652-11eb-886a-2cf4d5915c24.jpeg)
 
 - 全国の介護サービスが一覧表示されている
 - 介護サービス名をクリックすると詳細ページに遷移する
