@@ -35,7 +35,7 @@ basic認証
 # DEMO
 **トップページ**
 
-![nurho_toppage](https://user-images.githubusercontent.com/75558619/106731999-81be8e80-6653-11eb-882d-ee5cd85c7d1c.jpeg)
+![nurho_toppage](https://user-images.githubusercontent.com/75558619/107203704-19025800-6a3f-11eb-9907-b01f3495cafd.jpg)
 
 - 全国の介護サービスが一覧表示されている
 - 介護サービス名をクリックすると詳細ページに遷移する
@@ -45,7 +45,7 @@ basic認証
 - 画面下部企業用の管理ボタンをクリックすると企業用の管理ページに遷移する
 
 **検索画面**
-![nurho_search](https://user-images.githubusercontent.com/75558619/106733821-ae73a580-6655-11eb-9134-6b7a54a8562e.jpeg)
+![nurho_search](https://user-images.githubusercontent.com/75558619/107204133-a80f7000-6a3f-11eb-856e-5b522684ec41.jpg)
 
 - 条件を入力すると一致する介護サービスが一覧表示される
 
@@ -116,7 +116,7 @@ VSCode
 
 - serviceモデルの単体テストを行う
 - 結合テストを行う
-- 肥大化したコードや冗長的なコードを整理して可読性の向上を行う
+- 検索条件の選択ごとに該当件数が変化する機能
 
 # テーブル設計
 ## usersテーブル
